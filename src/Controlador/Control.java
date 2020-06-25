@@ -1,7 +1,9 @@
 package Controlador;
 import Modelo.Archivo;
+import Modelo.LogicaCliente;
 import Modelo.LogicaUsuario;
 import Vista.Principal;
+import Vista.v_cliente;
 import Vista.v_usuario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,14 +17,18 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
     public int numx, numy;
     public Principal principal;
     public static v_usuario v1;
+    public static v_cliente v2;
     private Archivo a;
     private LogicaUsuario USU;
+    private LogicaCliente CLI;
 
   
     public Control() {
         a=new Archivo();
         principal=new Principal();
         v1=new v_usuario();
+        v2=new v_cliente();
+        CLI=new LogicaCliente();
         USU=new LogicaUsuario();
         inicioBoton();
         

@@ -262,16 +262,22 @@
                               <Component id="jLabel7" max="32767" attributes="0"/>
                               <Component id="jLabel6" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="dir_txt" min="-2" pref="268" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="email_txt" min="-2" pref="170" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="est_combo" min="-2" pref="92" max="-2" attributes="0"/>
-                              </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="dir_txt" pref="130" max="32767" attributes="0"/>
+                              <Component id="email_txt" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel14" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="tipo_combo" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -282,14 +288,14 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel6" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="dir_txt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="jLabel11" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="jLabel14" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel7" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="email_txt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="est_combo" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel7" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="email_txt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="tipo_combo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -302,7 +308,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Black" size="12" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Direccion:"/>
+                    <Property name="text" type="java.lang.String" value="Identificacion :"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="dir_txt">
@@ -318,7 +324,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Black" size="12" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Email      :"/>
+                    <Property name="text" type="java.lang.String" value="Telefono         :"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="email_txt">
@@ -326,7 +332,24 @@
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="est_combo">
+                <Component class="javax.swing.JLabel" name="jLabel11">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial Black" size="12" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Punto:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel14">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Arial Black" size="12" style="0"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="tipo_combo">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="14" style="0"/>
@@ -360,26 +383,16 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel8" max="32767" attributes="0"/>
-                              <Component id="jLabel5" pref="64" max="32767" attributes="0"/>
-                          </Group>
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel5" max="32767" attributes="0"/>
+                              <Component id="jLabel8" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="tel_txt1" pref="299" max="32767" attributes="0"/>
                               <Component id="tel_txt" max="32767" attributes="0"/>
-                              <Component id="usu_txt" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel10" alignment="1" min="-2" pref="42" max="-2" attributes="0"/>
-                              <Component id="jLabel12" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="tipo_combo" alignment="1" min="-2" pref="146" max="-2" attributes="0"/>
-                              <Component id="clv_pass" alignment="1" min="-2" pref="146" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -388,21 +401,17 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel5" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="tel_txt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="jLabel10" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="tipo_combo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel8" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="usu_txt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="jLabel12" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="clv_pass" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel8" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="tel_txt1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -413,7 +422,7 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Black" size="12" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Telefono:"/>
+                    <Property name="text" type="java.lang.String" value="Direccion   :"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="tel_txt">
@@ -429,49 +438,13 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial Black" size="12" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Usuario  :"/>
+                    <Property name="text" type="java.lang.String" value="EmaIL        :"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="usu_txt">
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-                  </AuxValues>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel10">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial Black" size="12" style="0"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Tipo  :"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel12">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Arial Black" size="12" style="0"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Clave:"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JComboBox" name="tipo_combo">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="14" style="0"/>
-                    </Property>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
-                        <StringItem index="0" value="Seleccione"/>
-                        <StringItem index="1" value="Administrador"/>
-                        <StringItem index="2" value="Cajero"/>
-                      </StringArray>
-                    </Property>
-                  </Properties>
-                  <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-                  </AuxValues>
-                </Component>
-                <Component class="javax.swing.JPasswordField" name="clv_pass">
+                <Component class="javax.swing.JTextField" name="tel_txt1">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tel_txt1ActionPerformed"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
@@ -494,7 +467,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jPanel9" pref="490" max="32767" attributes="0"/>
+                          <Component id="jPanel9" pref="498" max="32767" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                           <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -526,17 +499,15 @@
                     <Component class="javax.swing.JTable" name="tabla">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="12" rowCount="0">
+                          <Table columnCount="10" rowCount="0">
                             <Column editable="false" title="" type="java.lang.Object"/>
                             <Column editable="false" title="Primer Nombre" type="java.lang.Object"/>
+                            <Column editable="false" title="" type="java.lang.Object"/>
                             <Column editable="false" title="Primer Apellido" type="java.lang.Object"/>
-                            <Column editable="false" title="Telefono" type="java.lang.Object"/>
+                            <Column editable="false" title="" type="java.lang.Object"/>
+                            <Column editable="false" title="Identificacion" type="java.lang.Object"/>
+                            <Column editable="false" title="" type="java.lang.Object"/>
                             <Column editable="false" title="Direccion" type="java.lang.Object"/>
-                            <Column editable="false" title="" type="java.lang.Object"/>
-                            <Column editable="false" title="" type="java.lang.Object"/>
-                            <Column editable="false" title="" type="java.lang.Object"/>
-                            <Column editable="false" title="" type="java.lang.Object"/>
-                            <Column editable="false" title="" type="java.lang.Object"/>
                             <Column editable="false" title="" type="java.lang.Object"/>
                             <Column editable="false" title="" type="java.lang.Object"/>
                           </Table>

@@ -14,7 +14,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
-public class LogicaUsuario {
+public class LogicaCliente {
     private Connection cn;
     public String pk;
     public DefaultTableModel modelo;
@@ -22,22 +22,22 @@ public class LogicaUsuario {
     private CallableStatement fun;
     private boolean seleccion=false;
    
-    public LogicaUsuario() {
+    public LogicaCliente() {
         funcion=new Funcion();
         IniciarModel();
     }  
     private void IniciarModel(){          
-        Funcion.PitarScroll(Control.v1.scroll);
-        Funcion.PintarMarcoTabla(Control.v1.tabla);
-        String titulo1[]={"","Primer Nombre","","Primer Apellido","","Telefono","Direccion","","","","",""};
+        Funcion.PitarScroll(Control.v2.scroll);
+        Funcion.PintarMarcoTabla(Control.v2.tabla);
+        String titulo1[]={"","Primer Nombre","","Primer Apellido","","Identificacion","","Direccion","",""};
         modelo =new DefaultTableModel(null, titulo1){
             public boolean isCellEditable(int row, int column) {
                 if(column==10)return true;
                 else return false;   
             } 
         }; 
-        CargarTabla(6,"",Control.v1.tabla,modelo);
-        TamañoTabla(Control.v1.tabla);     
+        CargarTabla(6,"",Control.v2.tabla,modelo);
+        TamañoTabla(Control.v2.tabla);     
     }
     public void Add(){
         if(Verificar()){
@@ -121,16 +121,16 @@ public class LogicaUsuario {
         }else funcion.Aviso(9);
     }
     public void CargarTabla(int num, String valor,JTable t,DefaultTableModel m) {     
-        String registro[] = new String[12];
+        String registro[] = new String[10];
         String sql = null;
         
         if(num!=0){
-            if (num==1)sql = "SELECT *FROM persona where nom1_perso LIKE '%" + valor + "%' where est_perso=1"; 
-            if (num==2)sql = "SELECT *FROM persona where nom2_perso LIKE '%" + valor + "%' where est_perso=1"; 
-            if (num==3)sql = "SELECT *FROM persona where ape1_perso LIKE '%" + valor + "%' where est_perso=1"; 
-            if (num==4)sql = "SELECT *FROM persona where ape2_perso LIKE '%" + valor + "%' where est_perso=1"; 
-            if (num==5)sql = "SELECT *FROM persona where tipo_perso LIKE '%" + valor + "%' where est_perso=1"; 
-            if (num==6)sql = "SELECT *FROM persona where est_perso=1";
+            if (num==1)sql = "SELECT *FROM cliente where nom1_cli LIKE '%" + valor + "%' where est_cli=1"; 
+            if (num==2)sql = "SELECT *FROM cliente where nom2_cli LIKE '%" + valor + "%' where est_cli=1"; 
+            if (num==3)sql = "SELECT *FROM cliente where ape1_cli LIKE '%" + valor + "%' where est_cli=1"; 
+            if (num==4)sql = "SELECT *FROM cliente where ape2_cli LIKE '%" + valor + "%' where est_cli=1"; 
+            if (num==5)sql = "SELECT *FROM cliente where ced_cli LIKE '%" + valor + "%' where est_cli=1"; 
+            if (num==6)sql = "SELECT *FROM cli where est_cli=1";
             if(num!=6)Funcion.Limpiar_tabla(t,m);   
             try {
                 cn =AccesoDatos.conexion();
@@ -143,13 +143,11 @@ public class LogicaUsuario {
                     registro[2] = rs.getString(3);//nom2
                     registro[3] = rs.getString(4);//ap1
                     registro[4] = rs.getString(5);//ap2
-                    registro[5] = rs.getString(6);//tel
-                    registro[6] = rs.getString(7);//dir
-                    registro[7] = rs.getString(8);//tipo
-                    registro[8] = rs.getString(9);//usuario
-                    registro[9] = rs.getString(10);//clave
-                    registro[10] = rs.getString(12);//correo
-                    registro[11] = rs.getString(13);//estado
+                    registro[5] = rs.getString(6);//cedula
+                    registro[6] = rs.getString(7);//tel
+                    registro[7] = rs.getString(8);//dir
+                    registro[8] = rs.getString(9);//cor
+                    registro[9] = rs.getString(10);//estado
                     m.addRow(registro);
                 }
                 cn.close();
@@ -165,8 +163,8 @@ public class LogicaUsuario {
         TableColumnModel columnModel = t.getColumnModel();
         columnModel.getColumn(1).setPreferredWidth(100);//nombres1
         columnModel.getColumn(3).setPreferredWidth(100);//apellido1
-        columnModel.getColumn(5).setPreferredWidth(70);//telefono
-        columnModel.getColumn(6).setPreferredWidth(300);//direccion
+        columnModel.getColumn(5).setPreferredWidth(70);//cedula
+        columnModel.getColumn(7).setPreferredWidth(300);//direccion
 
         //id
         t.getColumnModel().getColumn(0).setMinWidth(0);
@@ -186,52 +184,40 @@ public class LogicaUsuario {
         t.getTableHeader().getColumnModel().getColumn(4).setMaxWidth(0);
         t.getTableHeader().getColumnModel().getColumn(4).setMinWidth(0);
 
-        //Tipo
-        t.getColumnModel().getColumn(7).setMinWidth(0);
-        t.getColumnModel().getColumn(7).setPreferredWidth(0); 
-        t.getTableHeader().getColumnModel().getColumn(7).setMaxWidth(0);
-        t.getTableHeader().getColumnModel().getColumn(7).setMinWidth(0);
+        //telefono
+        t.getColumnModel().getColumn(6).setMinWidth(0);
+        t.getColumnModel().getColumn(6).setPreferredWidth(0); 
+        t.getTableHeader().getColumnModel().getColumn(6).setMaxWidth(0);
+        t.getTableHeader().getColumnModel().getColumn(6).setMinWidth(0);
 
-        // Usuario
+        // correo
         t.getColumnModel().getColumn(8).setMinWidth(0);
         t.getColumnModel().getColumn(8).setPreferredWidth(0); 
         t.getTableHeader().getColumnModel().getColumn(8).setMaxWidth(0);
         t.getTableHeader().getColumnModel().getColumn(8).setMinWidth(0);
 
-        // Clave 
+        // estado
         t.getColumnModel().getColumn(9).setMinWidth(0);
         t.getColumnModel().getColumn(9).setPreferredWidth(0); 
         t.getTableHeader().getColumnModel().getColumn(9).setMaxWidth(0);
         t.getTableHeader().getColumnModel().getColumn(9).setMinWidth(0);
-
-        // Correo
-        t.getColumnModel().getColumn(10).setMinWidth(0);
-        t.getColumnModel().getColumn(10).setPreferredWidth(0); 
-        t.getTableHeader().getColumnModel().getColumn(10).setMaxWidth(0);
-        t.getTableHeader().getColumnModel().getColumn(10).setMinWidth(0);  
-        
-        //estado
-        t.getColumnModel().getColumn(11).setMinWidth(0);
-        t.getColumnModel().getColumn(11).setPreferredWidth(0); 
-        t.getTableHeader().getColumnModel().getColumn(11).setMaxWidth(0);
-        t.getTableHeader().getColumnModel().getColumn(11).setMinWidth(0);  
     }
     public void Select(JTable t){
         if (t.getSelectedRow() != -1) {
-            int fila = t.getSelectedRow();                 
-            pk=t.getValueAt(fila,0).toString();
-            Control.v1.n1_txt.setText(t.getValueAt(fila,1).toString());
-            Control.v1.n2_txt.setText(t.getValueAt(fila,2).toString());
-            Control.v1.ap1_txt.setText(t.getValueAt(fila,3).toString());
-            Control.v1.ap2_txt.setText(t.getValueAt(fila,4).toString());
-            Control.v1.tel_txt.setText(t.getValueAt(fila,5).toString());
-            Control.v1.dir_txt.setText(t.getValueAt(fila,6).toString());
-            Control.v1.tipo_combo.setSelectedItem(t.getValueAt(fila,7).toString());
-            Control.v1.usu_txt.setText(t.getValueAt(fila,8).toString());
-            Control.v1.clv_pass.setText(t.getValueAt(fila,9).toString());
-            Control.v1.email_txt.setText(t.getValueAt(fila,10).toString());
-            Control.v1.est_combo.setSelectedIndex(Integer.parseInt(t.getValueAt(fila,11).toString()));
-            seleccion=true;     
+//            int fila = t.getSelectedRow();                 
+//            pk=t.getValueAt(fila,0).toString();
+//            Control.v2.n1_txt.setText(t.getValueAt(fila,1).toString());
+//            Control.v2.n2_txt.setText(t.getValueAt(fila,2).toString());
+//            Control.v2.ap1_txt.setText(t.getValueAt(fila,3).toString());
+//            Control.v2.ap2_txt.setText(t.getValueAt(fila,4).toString());
+//            Control.v2.tel_txt.setText(t.getValueAt(fila,5).toString());
+//            Control.v2.dir_txt.setText(t.getValueAt(fila,6).toString());
+//            Control.v2.tipo_combo.setSelectedItem(t.getValueAt(fila,7).toString());
+//            Control.v2.usu_txt.setText(t.getValueAt(fila,8).toString());
+//            Control.v2.clv_pass.setText(t.getValueAt(fila,9).toString());
+//            Control.v2.email_txt.setText(t.getValueAt(fila,10).toString());
+//            Control.v2.est_combo.setSelectedIndex(Integer.parseInt(t.getValueAt(fila,11).toString()));
+//            seleccion=true;     
         }      
     }
     public void LimpiarCajas(){
@@ -249,10 +235,9 @@ public class LogicaUsuario {
         Control.v1.tabla.clearSelection();//deseleccionando la fila seleccionada
     }
     private boolean Verificar(){
-        if(!Control.v1.n1_txt.getText().isEmpty()&&!Control.v1.ap1_txt.getText().isEmpty()&&
-        !Control.v1.dir_txt.getText().isEmpty()&&!Control.v1.email_txt.getText().isEmpty()&&
-        !Control.v1.tel_txt.getText().isEmpty()&&Control.v1.tipo_combo.getSelectedIndex()!=0&&!Control.v1.usu_txt.getText().isEmpty()&&
-        !Control.v1.clv_pass.getText().isEmpty())return true;
+        if(!Control.v2.n1_txt.getText().isEmpty()&&!Control.v2.ap1_txt.getText().isEmpty()&&
+        !Control.v2.dir_txt.getText().isEmpty()&&!Control.v2.email_txt.getText().isEmpty()&&
+        !Control.v2.tel_txt.getText().isEmpty())return true;
         else funcion.Aviso(14);
         return false; 
     }
