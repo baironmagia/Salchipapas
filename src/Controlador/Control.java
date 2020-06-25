@@ -28,15 +28,15 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
         
         
        //if(a.Leer())
-           this.principal.setVisible(true);
+          // this.principal.setVisible(true);
         
         
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-//        if(e.getSource()==ventana.op0_btn){
-//            SeleccionVentana(0);            
-//        }
+        if(e.getSource()==v1.save){
+           USU.Add();
+        }
 //        else if(e.getSource()==ventana.op1_btn){
 //            SeleccionVentana(1);  
 //
@@ -193,6 +193,7 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
         v1.escote.addMouseListener(this);
         v1.tabla.addMouseListener(this);
         v1.caja_txt.addKeyListener(this);
+        v1.save.addActionListener(this);
         v1.setVisible(true);
        
         

@@ -2,10 +2,13 @@
 package Modelo;
 
 import Controlador.Control;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
+import java.sql.Types;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -13,10 +16,15 @@ import javax.swing.table.TableColumnModel;
 
 public class LogicaUsuario {
     private Connection cn;
-    public DefaultTableModel modelo;
     public String pk;
+    public DefaultTableModel modelo;
+    public Funcion funcion;
+    private CallableStatement fun;
+    private boolean seleccion=false;
+    
 
     public LogicaUsuario() {
+        funcion=new Funcion();
         IniciarModel();
     }  
     private void IniciarModel(){          
@@ -31,7 +39,49 @@ public class LogicaUsuario {
         }; 
         CargarTabla(6,"",Control.v1.tabla,modelo);
         TamañoTabla(1,Control.v1.tabla);     
-    }   
+    }
+    public void Add(){
+        if(Verificar()){
+            try {
+                if(funcion.Confirme(4)==0){
+                    cn = AccesoDatos.conexion();
+                    fun=cn.prepareCall("{?=call  AddPersona(?,?,?,?,?,?,?,?,?,?)}");
+                    fun.registerOutParameter(1,Types.BOOLEAN);
+                    fun.setString(2,Control.v1.n1_txt.getText());
+                    fun.setString(3,Control.v1.n2_txt.getText());
+                    fun.setString(4,Control.v1.ap1_txt.getText());
+                    fun.setString(5,Control.v1.ap2_txt.getText());
+                    fun.setString(6,Control.v1.tel_txt.getText());
+                    fun.setString(7,Control.v1.dir_txt.getText());
+                    fun.setString(8,Control.v1.tipo_combo.getSelectedItem().toString());
+                    fun.setString(9,Control.v1.usu_txt.getText());
+                    fun.setString(10,Control.v1.clv_pass.getText());
+                    fun.setString(11,Control.v1.email_txt.getText());
+                    fun.execute();
+                    if(fun.getBoolean(1)){
+                        
+                        seleccion=false;
+                        LimpiarCajas(); 
+                        funcion.Limpiar_tabla(Control.v1.tabla,modelo);
+                        CargarTabla(6,"",Control.v1.tabla,modelo);  
+                        funcion.Aviso(3);
+                    }
+                    cn.close();
+                    fun.close();
+                }
+            }
+            //manejo de los indice o valores nulos
+            catch (SQLIntegrityConstraintViolationException e){
+               funcion.Aviso(6);
+            }
+            catch (SQLException e){
+                JOptionPane.showMessageDialog(null,e);
+            }     
+        }
+    }
+    public void Update(){
+        
+    }
     public void CargarTabla(int num, String valor,JTable t,DefaultTableModel m) {     
         String registro[] = new String[11];
         String sql = null;
@@ -79,8 +129,8 @@ public class LogicaUsuario {
                 // Tabla panel 1
                 columnModel.getColumn(1).setPreferredWidth(100);//nombres1
                 columnModel.getColumn(3).setPreferredWidth(100);//apellido1
-                columnModel.getColumn(5).setPreferredWidth(100);//telefono
-                columnModel.getColumn(6).setPreferredWidth(200);//direccion
+                columnModel.getColumn(5).setPreferredWidth(70);//telefono
+                columnModel.getColumn(6).setPreferredWidth(300);//direccion
                 
                 //id
                 t.getColumnModel().getColumn(0).setMinWidth(0);
@@ -177,6 +227,7 @@ public class LogicaUsuario {
             Control.v1.usu_txt.setText(t.getValueAt(fila,8).toString());
             Control.v1.clv_pass.setText(t.getValueAt(fila,9).toString());
             Control.v1.email_txt.setText(t.getValueAt(fila,10).toString());
+            
         }       
     }
     public void LimpiarCajas(){
@@ -190,5 +241,13 @@ public class LogicaUsuario {
         Control.v1.usu_txt.setText("");
         Control.v1.clv_pass.setText(""); 
         Control.v1.tabla.clearSelection();//deseleccionando la fila seleccionada
+    }
+    private boolean Verificar(){
+        if(!Control.v1.n1_txt.getText().isEmpty()&&!Control.v1.ap1_txt.getText().isEmpty()&&
+        !Control.v1.dir_txt.getText().isEmpty()&&!Control.v1.email_txt.getText().isEmpty()&&
+        !Control.v1.tel_txt.getText().isEmpty()&&Control.v1.tipo_combo.getSelectedIndex()!=0&&!Control.v1.usu_txt.getText().isEmpty()&&
+        !Control.v1.clv_pass.getText().isEmpty())return true;
+        else funcion.Aviso(14);
+        return false; 
     }
 }
