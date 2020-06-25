@@ -37,10 +37,12 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
         if(e.getSource()==v1.save){
            USU.Add();
         }
-//        else if(e.getSource()==ventana.op1_btn){
-//            SeleccionVentana(1);  
-//
-//        }
+        else if(e.getSource()==v1.uptade){
+            USU.Update();
+        }
+        else if(e.getSource()==v1.clear){
+            USU.LimpiarCajas();
+        }
         
         
         
@@ -194,6 +196,8 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
         v1.tabla.addMouseListener(this);
         v1.caja_txt.addKeyListener(this);
         v1.save.addActionListener(this);
+        v1.uptade.addActionListener(this);
+        v1.clear.addActionListener(this);
         v1.setVisible(true);
        
         
