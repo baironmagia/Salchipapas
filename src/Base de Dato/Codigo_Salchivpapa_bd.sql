@@ -1,4 +1,3 @@
--- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `salchipapas_bd` DEFAULT CHARACTER SET utf8 ;
 USE `salchipapas_bd` ;
 
@@ -11,10 +10,11 @@ CREATE TABLE IF NOT EXISTS `salchipapas_bd`.`cliente` (
   `nom2_cli` VARCHAR(30) NULL DEFAULT NULL,
   `ape1_cli` VARCHAR(30) NOT NULL,
   `ape2_cli` VARCHAR(30) NULL DEFAULT NULL,
+  `ced_cli` VARCHAR(11) NOT NULL,
   `tel_cli` VARCHAR(15) NOT NULL,
   `dir_cli` VARCHAR(100) NOT NULL,
   `cor_cli` VARCHAR(255) NULL DEFAULT NULL,
-  `est_cli` TINYINT NULL,
+  `est_cli` TINYINT(4) NULL DEFAULT NULL,
   PRIMARY KEY (`id_cli`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 4
@@ -37,10 +37,10 @@ CREATE TABLE IF NOT EXISTS `salchipapas_bd`.`persona` (
   `clv_perso` VARCHAR(30) NULL DEFAULT NULL,
   `fecha_perso` DATE NULL DEFAULT NULL,
   `cor_perso` VARCHAR(255) NULL DEFAULT NULL,
-  `est_perso` TINYINT NULL,
+  `est_perso` TINYINT(4) NULL DEFAULT NULL,
   PRIMARY KEY (`id_perso`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -58,10 +58,10 @@ CREATE TABLE IF NOT EXISTS `salchipapas_bd`.`proveedor` (
   `dir_prove` VARCHAR(100) NULL DEFAULT NULL,
   `cor_prove` VARCHAR(255) NULL DEFAULT NULL,
   `fecha_prove` DATE NOT NULL,
-  `est_prove` TINYINT NULL,
+  `est_prove` TINYINT(4) NULL DEFAULT NULL,
   PRIMARY KEY (`id_prove`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `salchipapas_bd`.`compra_dia` (
   `id_prove` INT(11) NOT NULL,
   `total` INT(20) NOT NULL DEFAULT '0',
   `fecha` DATE NOT NULL,
-  `est_comp` TINYINT NULL,
+  `est_comp` TINYINT(4) NULL DEFAULT NULL,
   PRIMARY KEY (`id_compra`),
   INDEX `fk_compra_dia_persona1_idx` (`id_perso` ASC),
   INDEX `fk_compra_dia_proveedor1_idx` (`id_prove` ASC),
@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `salchipapas_bd`.`venta` (
   `fecha_ven` DATE NULL DEFAULT NULL,
   `id_cli` INT(11) NOT NULL,
   `id_perso` INT(11) NOT NULL,
-  `est_ven` TINYINT NULL,
+  `est_ven` TINYINT(4) NULL DEFAULT NULL,
   PRIMARY KEY (`id_venta`),
   INDEX `fk_venta_cliente1_idx` (`id_cli` ASC),
   INDEX `fk_venta_persona1_idx` (`id_perso` ASC),
@@ -193,3 +193,33 @@ CREATE TABLE IF NOT EXISTS `salchipapas_bd`.`puntos` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8;
+
+USE `salchipapas_bd` ;
+
+-- -----------------------------------------------------
+-- function AddPersona
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `salchipapas_bd`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `AddPersona`(n1 varchar(30),n2 varchar(30),a1 varchar(30),a2 varchar(30),tel varchar(15),dir varchar(100),tip varchar(15),usu varchar(30),clv varchar(30),cor varchar(255)) RETURNS tinyint(1)
+begin	
+    insert into persona values(null,n1,n2,a1,a2,tel,dir,tip,usu,clv,now(),cor,true);
+    return true;
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- function UpPersona
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `salchipapas_bd`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `UpPersona`(id int,n1 varchar(30),n2 varchar(30),a1 varchar(30),a2 varchar(30),tel varchar(15),dir varchar(100),tip varchar(15),usu varchar(30),clv varchar(30),cor varchar(255),est boolean) RETURNS tinyint(1)
+begin
+    update persona set nom1_perso=n1,nom2_perso=n2,ape1_perso=a1,ape2_perso=a2,tel_perso=tel,dir_perso=dir,tipo_perso=tip,usu_perso=usu,clv_perso=clv,cor_perso=cor,est_perso=est where id_perso=id;
+    return true;
+end$$
+
+DELIMITER ;
