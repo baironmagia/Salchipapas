@@ -34,7 +34,7 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
         
         
        //if(a.Leer())
-          // this.principal.setVisible(true);
+           this.principal.setVisible(true);
         
         
     }
@@ -49,6 +49,7 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
         else if(e.getSource()==v1.clear){
             USU.LimpiarCajas();
         }
+        
         
         
         
