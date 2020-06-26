@@ -162,6 +162,7 @@ public class v_cliente extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("0");
+        jLabel14.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         tipo_combo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tipo_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inactivo", "Activo" }));
@@ -515,7 +516,7 @@ public class v_cliente extends javax.swing.JFrame {
     public javax.swing.JTable tabla;
     public javax.swing.JTextField tel_txt;
     public javax.swing.JTextField tel_txt1;
-    private javax.swing.JComboBox<String> tipo_combo;
+    public javax.swing.JComboBox<String> tipo_combo;
     public javax.swing.JButton uptade;
     // End of variables declaration//GEN-END:variables
 }
