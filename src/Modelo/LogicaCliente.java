@@ -130,7 +130,7 @@ public class LogicaCliente {
             if (num==3)sql = "SELECT *FROM cliente where ape1_cli LIKE '%" + valor + "%' where est_cli=1"; 
             if (num==4)sql = "SELECT *FROM cliente where ape2_cli LIKE '%" + valor + "%' where est_cli=1"; 
             if (num==5)sql = "SELECT *FROM cliente where ced_cli LIKE '%" + valor + "%' where est_cli=1"; 
-            if (num==6)sql = "SELECT *FROM cli where est_cli=1";
+            if (num==6)sql = "SELECT *FROM cliente where est_cli=1";
             if(num!=6)Funcion.Limpiar_tabla(t,m);   
             try {
                 cn =AccesoDatos.conexion();

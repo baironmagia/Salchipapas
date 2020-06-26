@@ -34,7 +34,7 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
         
         
        //if(a.Leer())
-           this.principal.setVisible(true);
+           //this.principal.setVisible(true);
         
         
     }
@@ -49,14 +49,6 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
         else if(e.getSource()==v1.clear){
             USU.LimpiarCajas();
         }
-        
-        
-        
-        
-
-     
-        
-
     }
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -75,8 +67,7 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
 //        }
     }
     @Override
-    public void mouseReleased(MouseEvent e) {
-       
+    public void mouseReleased(MouseEvent e) {      
     }
     @Override
     public void mouseEntered(MouseEvent e) {
@@ -122,6 +113,12 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
             int y = e.getYOnScreen();
             v1.setLocation(x - numx, y - numy);
         }
+        if (e.getSource() == v2.escote) {
+            //ventana principal
+            int x = e.getXOnScreen();
+            int y = e.getYOnScreen();
+            v2.setLocation(x - numx, y - numy);
+        }
     }
     @Override
     public void mouseMoved(MouseEvent e) {
@@ -165,17 +162,14 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
     public void keyTyped(KeyEvent e) {
         
     }
-
     @Override
     public void keyPressed(KeyEvent e) {
           }
-
     @Override
     public void keyReleased(KeyEvent e) {
         if (e.getSource() ==v1.caja_txt) {
             USU.CargarTabla(v1.filtro_combo.getSelectedIndex(),v1.caja_txt.getText(),v1.tabla,USU.modelo);
-        }
-        
+        }        
     }
     private void inicioBoton(){
         principal.lblUsuario.addMouseMotionListener(this);
@@ -205,7 +199,7 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
         v1.save.addActionListener(this);
         v1.uptade.addActionListener(this);
         v1.clear.addActionListener(this);
-        v1.setVisible(true);
+        v2.setVisible(true);
        
         
     }
