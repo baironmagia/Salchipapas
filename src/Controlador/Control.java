@@ -217,23 +217,23 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
         v0.setLocationRelativeTo(null);
         
         
-        v1.escote.addMouseMotionListener(this);
-        v1.escote.addMouseListener(this);
-        v1.tabla.addMouseListener(this);
-        v1.caja_txt.addKeyListener(this);
-        v1.save.addActionListener(this);
-        v1.uptade.addActionListener(this);
-        v1.clear.addActionListener(this);
-        v1.setVisible(true);
+//        v1.escote.addMouseMotionListener(this);
+//        v1.escote.addMouseListener(this);
+//        v1.tabla.addMouseListener(this);
+//        v1.caja_txt.addKeyListener(this);
+//        v1.save.addActionListener(this);
+//        v1.uptade.addActionListener(this);
+//        v1.clear.addActionListener(this);
+//        v1.setVisible(true);
         
-        v2.escote.addMouseMotionListener(this);
-        v2.escote.addMouseListener(this);
-        v2.tabla.addMouseListener(this);
-        v2.caja_txt.addKeyListener(this);
-        v2.save.addActionListener(this);
-        v2.uptade.addActionListener(this);
-        v2.clear.addActionListener(this);
-        v2.setVisible(true);
+//        v2.escote.addMouseMotionListener(this);
+//        v2.escote.addMouseListener(this);
+//        v2.tabla.addMouseListener(this);
+//        v2.caja_txt.addKeyListener(this);
+//        v2.save.addActionListener(this);
+//        v2.uptade.addActionListener(this);
+//        v2.clear.addActionListener(this);
+//        v2.setVisible(true);
         
         v3.escote.addMouseMotionListener(this);
         v3.escote.addMouseListener(this);
