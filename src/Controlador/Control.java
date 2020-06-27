@@ -55,9 +55,9 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
         else if(e.getSource()==v3.uptade){
             PROV.Update();
         }
-        /*else if(e.getSource()==v1.clear){
-            USU.LimpiarCajas();
-        }*/
+        else if(e.getSource()==v3.clear){
+            PROV.LimpiarCajas();
+        }
     }
     @Override
     public void mouseClicked(MouseEvent e) {
