@@ -49,6 +49,15 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==v1.save){
+           USU.Add();
+        }
+        else if(e.getSource()==v1.uptade){
+            USU.Update();
+        }
+        else if(e.getSource()==v1.clear){
+            USU.LimpiarCajas();
+        }
         if(e.getSource()==v3.save){
            PROV.Add();
         }
@@ -189,13 +198,17 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
     }
     @Override
     public void keyPressed(KeyEvent e) {
-          }
+    }
     @Override
     public void keyReleased(KeyEvent e) {
         if (e.getSource() ==v1.caja_txt) {
             USU.CargarTabla(v1.filtro_combo.getSelectedIndex(),v1.caja_txt.getText(),v1.tabla,USU.modelo);
-        }        
+        }
+        if(e.getSource()==v3.caja_txt){
+            PROV.CargarTabla(v3.filtro_combo.getSelectedIndex(),v3.caja_txt.getText(),v3.tabla,PROV.modelo);
+        }
     }
+    
     private void inicioBoton(){
         v0.lblUsuario.addMouseMotionListener(this);
         v0.lblUsuario.addMouseListener(this);   
@@ -234,7 +247,7 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
 //        v2.uptade.addActionListener(this);
 //        v2.clear.addActionListener(this);
 //        v2.setVisible(true);
-        //para asignar eventos a cada boton
+        //para asignar eventos a cada boton en este caso de la ventana de proveedor
         v3.escote.addMouseMotionListener(this);
         v3.escote.addMouseListener(this);
         v3.tabla.addMouseListener(this);

@@ -16,11 +16,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 public class LogicaProveedor {
-    private Connection cn;
+    private Connection cn;//crea una variable para la conexion
     public String pk;
     public DefaultTableModel modelo;
     public Funcion funcion;
-    private CallableStatement fun;
+    private CallableStatement fun;//llama las funciones de mysql
     private boolean seleccion=false;
     public LogicaProveedor() {
         funcion=new Funcion();
@@ -121,11 +121,11 @@ public class LogicaProveedor {
         String sql = null;
         
         if(num!=0){
-            if (num==1)sql = "SELECT *FROM proveedor where nom1_prove LIKE '%" + valor + "%' where est_prove=1"; 
-            if (num==2)sql = "SELECT *FROM proveedor where nom2_prove LIKE '%" + valor + "%' where est_prove=1"; 
-            if (num==3)sql = "SELECT *FROM proveedor where ape1_prove LIKE '%" + valor + "%' where est_prove=1"; 
-            if (num==4)sql = "SELECT *FROM proveedor where ape2_prove LIKE '%" + valor + "%' where est_prove=1"; 
-            if (num==5)sql = "SELECT *FROM proveedor where nit_prove LIKE '%" + valor + "%' where est_prove=1"; 
+            if (num==1)sql = "SELECT *FROM proveedor where nom1_prove LIKE '%" + valor + "%' and est_prove=1"; 
+            if (num==2)sql = "SELECT *FROM proveedor where nom2_prove LIKE '%" + valor + "%' and est_prove=1"; 
+            if (num==3)sql = "SELECT *FROM proveedor where ape1_prove LIKE '%" + valor + "%' and est_prove=1"; 
+            if (num==4)sql = "SELECT *FROM proveedor where ape2_prove LIKE '%" + valor + "%' and est_prove=1"; 
+            if (num==5)sql = "SELECT *FROM proveedor where nit_prove LIKE '%" + valor + "%' and est_prove=1"; 
             if (num==6)sql = "SELECT *FROM proveedor where est_prove=1";
             if(num!=6)Funcion.Limpiar_tabla(t,m);   
             try {
