@@ -408,7 +408,7 @@
                           <EmptySpace pref="30" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="ima_txt" alignment="1" min="-2" pref="299" max="-2" attributes="0"/>
-                              <Component id="ima_txt1" alignment="1" min="-2" pref="299" max="-2" attributes="0"/>
+                              <Component id="dir_txt" alignment="1" min="-2" pref="299" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -420,7 +420,7 @@
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel5" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="ima_txt1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="dir_txt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -457,9 +457,9 @@
                     <Property name="text" type="java.lang.String" value="Email      :"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="ima_txt1">
+                <Component class="javax.swing.JTextField" name="dir_txt">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ima_txt1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dir_txtActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

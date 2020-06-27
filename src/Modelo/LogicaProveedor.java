@@ -52,7 +52,8 @@ public class LogicaProveedor {
                     fun.setString(5,Control.v3.ap2_txt.getText());
                     fun.setString(6,Control.v3.tel_txt.getText());
                     fun.setString(7,Control.v3.nit_txt.getText());
-                    fun.setString(8,Control.v3.ima_txt.getText());
+                    fun.setString(8,Control.v3.dir_txt.getText());
+                    fun.setString(9,Control.v3.ima_txt.getText());
                    
                     fun.execute();
                     if(fun.getBoolean(1)){      
@@ -81,27 +82,24 @@ public class LogicaProveedor {
                try {
                    if(funcion.Confirme(1)==0){
                         cn = AccesoDatos.conexion();
-                        fun=cn.prepareCall("{?=call UpPersona(?,?,?,?,?,?,?,?,?,?,?,?)}");
+                        fun=cn.prepareCall("{?=call UpProveedor(?,?,?,?,?,?,?,?,?)}");
                         fun.registerOutParameter(1,Types.BOOLEAN);
                         fun.setString(2,pk);
-                        fun.setString(3,Control.v1.n1_txt.getText());
-                        fun.setString(4,Control.v1.n2_txt.getText());
-                        fun.setString(5,Control.v1.ap1_txt.getText());
-                        fun.setString(6,Control.v1.ap2_txt.getText());
-                        fun.setString(7,Control.v1.tel_txt.getText());
-                        fun.setString(8,Control.v1.dir_txt.getText());
-                        fun.setString(9,Control.v1.tipo_combo.getSelectedItem().toString());
-                        fun.setString(10,Control.v1.usu_txt.getText());
-                        fun.setString(11,Control.v1.clv_pass.getText());
-                        fun.setString(12,Control.v1.email_txt.getText());
-                        fun.setInt(13,Control.v1.est_combo.getSelectedIndex());
+                        fun.setString(3,Control.v3.n1_txt.getText());
+                        fun.setString(4,Control.v3.n2_txt.getText());
+                        fun.setString(5,Control.v3.ap1_txt.getText());
+                        fun.setString(6,Control.v3.ap2_txt.getText());
+                        fun.setString(7,Control.v3.tel_txt.getText());
+                        fun.setString(8,Control.v3.nit_txt.getText());
+                        fun.setString(9,Control.v3.dir_txt.getText());
+                        fun.setString(10,Control.v3.ima_txt.getText());
                         fun.execute();
 
                        if(fun.getBoolean(1)){
                         seleccion=false;
                         LimpiarCajas(); 
-                        Funcion.Limpiar_tabla(Control.v1.tabla,modelo);
-                        CargarTabla(6,"",Control.v1.tabla,modelo);  
+                        Funcion.Limpiar_tabla(Control.v3.tabla,modelo);
+                        CargarTabla(6,"",Control.v3.tabla,modelo);  
                         funcion.Aviso(3);
                        }               
                        cn.close();
@@ -123,12 +121,12 @@ public class LogicaProveedor {
         String sql = null;
         
         if(num!=0){
-            if (num==1)sql = "SELECT *FROM persona where nom1_perso LIKE '%" + valor + "%' where est_perso=1"; 
-            if (num==2)sql = "SELECT *FROM persona where nom2_perso LIKE '%" + valor + "%' where est_perso=1"; 
-            if (num==3)sql = "SELECT *FROM persona where ape1_perso LIKE '%" + valor + "%' where est_perso=1"; 
-            if (num==4)sql = "SELECT *FROM persona where ape2_perso LIKE '%" + valor + "%' where est_perso=1"; 
-            if (num==5)sql = "SELECT *FROM persona where tipo_perso LIKE '%" + valor + "%' where est_perso=1"; 
-            if (num==6)sql = "SELECT *FROM persona where est_perso=1";
+            if (num==1)sql = "SELECT *FROM proveedor where nom1_prove LIKE '%" + valor + "%' where est_prove=1"; 
+            if (num==2)sql = "SELECT *FROM proveedor where nom2_prove LIKE '%" + valor + "%' where est_prove=1"; 
+            if (num==3)sql = "SELECT *FROM proveedor where ape1_prove LIKE '%" + valor + "%' where est_prove=1"; 
+            if (num==4)sql = "SELECT *FROM proveedor where ape2_prove LIKE '%" + valor + "%' where est_prove=1"; 
+            if (num==5)sql = "SELECT *FROM proveedor where nit_prove LIKE '%" + valor + "%' where est_prove=1"; 
+            if (num==6)sql = "SELECT *FROM proveedor where est_prove=1";
             if(num!=6)Funcion.Limpiar_tabla(t,m);   
             try {
                 cn =AccesoDatos.conexion();
@@ -213,34 +211,28 @@ public class LogicaProveedor {
         if (t.getSelectedRow() != -1) {
             int fila = t.getSelectedRow();                 
             pk=t.getValueAt(fila,0).toString();
-            Control.v1.n1_txt.setText(t.getValueAt(fila,1).toString());
-            Control.v1.n2_txt.setText(t.getValueAt(fila,2).toString());
-            Control.v1.ap1_txt.setText(t.getValueAt(fila,3).toString());
-            Control.v1.ap2_txt.setText(t.getValueAt(fila,4).toString());
-            Control.v1.tel_txt.setText(t.getValueAt(fila,5).toString());
-            Control.v1.dir_txt.setText(t.getValueAt(fila,6).toString());
-            Control.v1.tipo_combo.setSelectedItem(t.getValueAt(fila,7).toString());
-            Control.v1.usu_txt.setText(t.getValueAt(fila,8).toString());
-            Control.v1.clv_pass.setText(t.getValueAt(fila,9).toString());
-            Control.v1.email_txt.setText(t.getValueAt(fila,10).toString());
-            Control.v1.est_combo.setSelectedIndex(Integer.parseInt(t.getValueAt(fila,11).toString()));
+            Control.v3.n1_txt.setText(t.getValueAt(fila,1).toString());
+            Control.v3.n2_txt.setText(t.getValueAt(fila,2).toString());
+            Control.v3.ap1_txt.setText(t.getValueAt(fila,3).toString());
+            Control.v3.ap2_txt.setText(t.getValueAt(fila,4).toString());
+            Control.v3.tel_txt.setText(t.getValueAt(fila,5).toString());
+            Control.v3.nit_txt.setText(t.getValueAt(fila,6).toString());
+            Control.v3.dir_txt.setText(t.getValueAt(fila,7).toString());
+            Control.v3.ima_txt.setText(t.getValueAt(fila,8).toString());
             seleccion=true;     
         }      
     }
-    /*public void LimpiarCajas(){
-        Control.v1.n1_txt.setText("");
-        Control.v1.n2_txt.setText("");
-        Control.v1.ap1_txt.setText("");
-        Control.v1.ap2_txt.setText("");
-        Control.v1.tel_txt.setText("");           
-        Control.v1.dir_txt.setText("");
-        Control.v1.email_txt.setText("");
-        Control.v1.usu_txt.setText("");
-        Control.v1.clv_pass.setText("");
-        Control.v1.est_combo.setSelectedIndex(0);
-        Control.v1.tipo_combo.setSelectedIndex(0);
-        Control.v1.tabla.clearSelection();//deseleccionando la fila seleccionada
-    }*/
+    public void LimpiarCajas(){
+        Control.v3.n1_txt.setText("");
+        Control.v3.n2_txt.setText("");
+        Control.v3.ap1_txt.setText("");
+        Control.v3.ap2_txt.setText("");
+        Control.v3.tel_txt.setText(""); 
+        Control.v3.nit_txt.setText("");
+        Control.v3.dir_txt.setText("");
+        Control.v3.ima_txt.setText("");
+        
+    }
     private boolean Verificar(){
         if(!Control.v3.n1_txt.getText().isEmpty()&&!Control.v3.ap1_txt.getText().isEmpty()&&
         !Control.v3.tel_txt.getText().isEmpty()&&!Control.v3.nit_txt.getText().isEmpty()&&

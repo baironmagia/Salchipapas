@@ -236,3 +236,16 @@ begin
 end$$
 DELIMITER ;
 describe proveedor;
+-- ----------------------------------------------------------------------------
+-- aptualizar proveedores
+-- --------------------------------------------------------------------------
+DELIMITER $$
+USE `salchipapas_bd`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `UpProveedor`(id int,n1 varchar(30),n2 varchar(30),a1 varchar(30),a2 varchar(30),tel varchar(15), ni varchar(100),dir varchar(100),cor varchar(255)) RETURNS tinyint(1)
+begin
+    update proveedor set nom1_prove=n1,nom2_prove=n2,ape1_prove=a1,ap2_prove=a2,tel_prove=tel,nit_prove=ni,dir_prove=dir,cor_prove=cor where id_prove=id;
+    return true;
+end$$
+
+DELIMITER ;
+drop function UpProveedor;

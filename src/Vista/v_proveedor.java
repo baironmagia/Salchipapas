@@ -39,7 +39,7 @@ public class v_proveedor extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         ima_txt = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        ima_txt1 = new javax.swing.JTextField();
+        dir_txt = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         scroll = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
@@ -217,9 +217,9 @@ public class v_proveedor extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel8.setText("Email      :");
 
-        ima_txt1.addActionListener(new java.awt.event.ActionListener() {
+        dir_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ima_txt1ActionPerformed(evt);
+                dir_txtActionPerformed(evt);
             }
         });
 
@@ -235,7 +235,7 @@ public class v_proveedor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ima_txt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ima_txt1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dir_txt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -244,7 +244,7 @@ public class v_proveedor extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ima_txt1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dir_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -433,9 +433,9 @@ public class v_proveedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tel_txtActionPerformed
 
-    private void ima_txt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ima_txt1ActionPerformed
+    private void dir_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dir_txtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ima_txt1ActionPerformed
+    }//GEN-LAST:event_dir_txtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -479,11 +479,11 @@ public class v_proveedor extends javax.swing.JFrame {
     public javax.swing.JTextField caja_txt;
     public javax.swing.JButton clear;
     public javax.swing.JButton delete;
+    public javax.swing.JTextField dir_txt;
     public javax.swing.JPanel escote;
     public javax.swing.JComboBox<String> est_combo;
     public javax.swing.JComboBox<String> filtro_combo;
     public javax.swing.JTextField ima_txt;
-    public javax.swing.JTextField ima_txt1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
