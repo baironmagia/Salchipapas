@@ -223,3 +223,16 @@ begin
 end$$
 
 DELIMITER ;
+
+-- ------------------------------------------------------------------------------------
+-- add un proveedor a la base de datos
+-- ------------------------------------------------------------------------------
+DELIMITER $$
+USE `salchipapas_bd`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `Addproveedor`(n1 varchar(30),n2 varchar(30),a1 varchar(30),a2 varchar(30),tel varchar(15),ni varchar(100),di varchar(15),co varchar(30)) RETURNS tinyint(1)
+begin	
+    insert into proveedor values(null,n1,n2,a1,a2,tel,ni,di,co,now(),true);
+    return true;
+end$$
+DELIMITER ;
+describe proveedor;

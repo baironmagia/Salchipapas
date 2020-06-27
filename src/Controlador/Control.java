@@ -49,15 +49,15 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==v1.save){
-           USU.Add();
+        if(e.getSource()==v3.save){
+           PROV.Add();
         }
-        else if(e.getSource()==v1.uptade){
+        /*else if(e.getSource()==v1.uptade){
             USU.Update();
         }
         else if(e.getSource()==v1.clear){
             USU.LimpiarCajas();
-        }
+        }*/
     }
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -234,7 +234,7 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
 //        v2.uptade.addActionListener(this);
 //        v2.clear.addActionListener(this);
 //        v2.setVisible(true);
-        
+        //para asignar eventos a cada boton
         v3.escote.addMouseMotionListener(this);
         v3.escote.addMouseListener(this);
         v3.tabla.addMouseListener(this);

@@ -15,11 +15,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 public class LogicaUsuario {
-    private Connection cn;
+    private Connection cn;//parte de mysql
     public String pk;
     public DefaultTableModel modelo;
     public Funcion funcion;
-    private CallableStatement fun;
+    private CallableStatement fun;//parte de mysql
     private boolean seleccion=false;
    
     public LogicaUsuario() {

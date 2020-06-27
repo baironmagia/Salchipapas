@@ -2,6 +2,7 @@
 package Modelo;
 
 import Controlador.Control;
+import Vista.v_proveedor;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -21,47 +22,44 @@ public class LogicaProveedor {
     public Funcion funcion;
     private CallableStatement fun;
     private boolean seleccion=false;
-   
     public LogicaProveedor() {
         funcion=new Funcion();
         IniciarModel();
     }  
     private void IniciarModel(){          
-        Funcion.PitarScroll(Control.v1.scroll);
-        Funcion.PintarMarcoTabla(Control.v1.tabla);
-        String titulo1[]={"","Primer Nombre","","Primer Apellido","","Telefono","Direccion","","","","",""};
+        Funcion.PitarScroll(Control.v3.scroll);
+        Funcion.PintarMarcoTabla(Control.v3.tabla);
+        String titulo1[]={"","Primer Nombre","","Primer Apellido","","Telefono","","Direccion","","",""};
         modelo =new DefaultTableModel(null, titulo1){
             public boolean isCellEditable(int row, int column) {
-                if(column==10)return true;
+                if(column==11)return true;
                 else return false;   
             } 
         }; 
-        CargarTabla(6,"",Control.v1.tabla,modelo);
-        TamañoTabla(Control.v1.tabla);     
+        CargarTabla(6,"",Control.v3.tabla,modelo);
+        TamañoTabla(Control.v3.tabla);     
     }
     public void Add(){
         if(Verificar()){
             try {
                 if(funcion.Confirme(4)==0){
                     cn = AccesoDatos.conexion();
-                    fun=cn.prepareCall("{?=call  AddPersona(?,?,?,?,?,?,?,?,?,?)}");
+                    fun=cn.prepareCall("{?=call  Addproveedor(?,?,?,?,?,?,?,?)}");
                     fun.registerOutParameter(1,Types.BOOLEAN);
-                    fun.setString(2,Control.v1.n1_txt.getText());
-                    fun.setString(3,Control.v1.n2_txt.getText());
-                    fun.setString(4,Control.v1.ap1_txt.getText());
-                    fun.setString(5,Control.v1.ap2_txt.getText());
-                    fun.setString(6,Control.v1.tel_txt.getText());
-                    fun.setString(7,Control.v1.dir_txt.getText());
-                    fun.setString(8,Control.v1.tipo_combo.getSelectedItem().toString());
-                    fun.setString(9,Control.v1.usu_txt.getText());
-                    fun.setString(10,Control.v1.clv_pass.getText());
-                    fun.setString(11,Control.v1.email_txt.getText());
+                    fun.setString(2,Control.v3.n1_txt.getText());                 
+                    fun.setString(3,Control.v3.n2_txt.getText());
+                    fun.setString(4,Control.v3.ap1_txt.getText());
+                    fun.setString(5,Control.v3.ap2_txt.getText());
+                    fun.setString(6,Control.v3.tel_txt.getText());
+                    fun.setString(7,Control.v3.nit_txt.getText());
+                    fun.setString(8,Control.v3.ima_txt.getText());
+                   
                     fun.execute();
                     if(fun.getBoolean(1)){      
                         seleccion=false;
                         LimpiarCajas(); 
-                        Funcion.Limpiar_tabla(Control.v1.tabla,modelo);
-                        CargarTabla(6,"",Control.v1.tabla,modelo);  
+                        Funcion.Limpiar_tabla(Control.v3.tabla,modelo);
+                        CargarTabla(6,"",Control.v3.tabla,modelo);  
                         funcion.Aviso(3);
                     }
                     cn.close();
@@ -121,7 +119,7 @@ public class LogicaProveedor {
         }else funcion.Aviso(9);
     }
     public void CargarTabla(int num, String valor,JTable t,DefaultTableModel m) {     
-        String registro[] = new String[12];
+        String registro[] = new String[11];
         String sql = null;
         
         if(num!=0){
@@ -144,12 +142,11 @@ public class LogicaProveedor {
                     registro[3] = rs.getString(4);//ap1
                     registro[4] = rs.getString(5);//ap2
                     registro[5] = rs.getString(6);//tel
-                    registro[6] = rs.getString(7);//dir
-                    registro[7] = rs.getString(8);//tipo
-                    registro[8] = rs.getString(9);//usuario
-                    registro[9] = rs.getString(10);//clave
-                    registro[10] = rs.getString(12);//correo
-                    registro[11] = rs.getString(13);//estado
+                    registro[6] = rs.getString(7);//nit
+                    registro[7] = rs.getString(8);//dir
+                    registro[8] = rs.getString(9);//cor
+                    registro[9] = rs.getString(10);//fecha
+                    registro[10] = rs.getString(11);//estado
                     m.addRow(registro);
                 }
                 cn.close();
@@ -198,23 +195,19 @@ public class LogicaProveedor {
         t.getTableHeader().getColumnModel().getColumn(8).setMaxWidth(0);
         t.getTableHeader().getColumnModel().getColumn(8).setMinWidth(0);
 
-        // Clave 
+        // fecha 
         t.getColumnModel().getColumn(9).setMinWidth(0);
         t.getColumnModel().getColumn(9).setPreferredWidth(0); 
         t.getTableHeader().getColumnModel().getColumn(9).setMaxWidth(0);
         t.getTableHeader().getColumnModel().getColumn(9).setMinWidth(0);
 
-        // Correo
+        // estado
         t.getColumnModel().getColumn(10).setMinWidth(0);
         t.getColumnModel().getColumn(10).setPreferredWidth(0); 
         t.getTableHeader().getColumnModel().getColumn(10).setMaxWidth(0);
         t.getTableHeader().getColumnModel().getColumn(10).setMinWidth(0);  
         
-        //estado
-        t.getColumnModel().getColumn(11).setMinWidth(0);
-        t.getColumnModel().getColumn(11).setPreferredWidth(0); 
-        t.getTableHeader().getColumnModel().getColumn(11).setMaxWidth(0);
-        t.getTableHeader().getColumnModel().getColumn(11).setMinWidth(0);  
+ 
     }
     public void Select(JTable t){
         if (t.getSelectedRow() != -1) {
@@ -234,7 +227,7 @@ public class LogicaProveedor {
             seleccion=true;     
         }      
     }
-    public void LimpiarCajas(){
+    /*public void LimpiarCajas(){
         Control.v1.n1_txt.setText("");
         Control.v1.n2_txt.setText("");
         Control.v1.ap1_txt.setText("");
@@ -247,12 +240,11 @@ public class LogicaProveedor {
         Control.v1.est_combo.setSelectedIndex(0);
         Control.v1.tipo_combo.setSelectedIndex(0);
         Control.v1.tabla.clearSelection();//deseleccionando la fila seleccionada
-    }
+    }*/
     private boolean Verificar(){
-        if(!Control.v1.n1_txt.getText().isEmpty()&&!Control.v1.ap1_txt.getText().isEmpty()&&
-        !Control.v1.dir_txt.getText().isEmpty()&&!Control.v1.email_txt.getText().isEmpty()&&
-        !Control.v1.tel_txt.getText().isEmpty()&&Control.v1.tipo_combo.getSelectedIndex()!=0&&!Control.v1.usu_txt.getText().isEmpty()&&
-        !Control.v1.clv_pass.getText().isEmpty())return true;
+        if(!Control.v3.n1_txt.getText().isEmpty()&&!Control.v3.ap1_txt.getText().isEmpty()&&
+        !Control.v3.tel_txt.getText().isEmpty()&&!Control.v3.nit_txt.getText().isEmpty()&&
+        !Control.v3.ima_txt.getText().isEmpty()) return true;
         else funcion.Aviso(14);
         return false; 
     }
