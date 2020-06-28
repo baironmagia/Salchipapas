@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `salchipapas_bd`.`cliente` (
   `est_cli` TINYINT(4) NULL DEFAULT NULL,
   PRIMARY KEY (`id_cli`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `salchipapas_bd`.`persona` (
   `est_perso` TINYINT(4) NULL DEFAULT NULL,
   PRIMARY KEY (`id_perso`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 8
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `salchipapas_bd`.`proveedor` (
   `est_prove` TINYINT(4) NULL DEFAULT NULL,
   PRIMARY KEY (`id_prove`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 5
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -76,8 +76,8 @@ CREATE TABLE IF NOT EXISTS `salchipapas_bd`.`compra_dia` (
   `fecha` DATE NOT NULL,
   `est_comp` TINYINT(4) NULL DEFAULT NULL,
   PRIMARY KEY (`id_compra`),
-  INDEX `fk_compra_dia_persona1_idx` (`id_perso` ASC),
-  INDEX `fk_compra_dia_proveedor1_idx` (`id_prove` ASC),
+  INDEX `fk_compra_dia_persona1_idx` (`id_perso` ASC) VISIBLE,
+  INDEX `fk_compra_dia_proveedor1_idx` (`id_prove` ASC) VISIBLE,
   CONSTRAINT `fk_compra_dia_persona1`
     FOREIGN KEY (`id_perso`)
     REFERENCES `salchipapas_bd`.`persona` (`id_perso`)
@@ -89,7 +89,6 @@ CREATE TABLE IF NOT EXISTS `salchipapas_bd`.`compra_dia` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -101,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `salchipapas_bd`.`detalle_compra` (
   `descripcion` VARCHAR(200) NULL DEFAULT NULL,
   `valor` INT(20) NULL DEFAULT NULL,
   `id_compra` INT(11) NOT NULL,
-  INDEX `fk_detalle_compra_compra_dia1_idx` (`id_compra` ASC),
+  INDEX `fk_detalle_compra_compra_dia1_idx` (`id_compra` ASC) VISIBLE,
   CONSTRAINT `fk_detalle_compra_compra_dia1`
     FOREIGN KEY (`id_compra`)
     REFERENCES `salchipapas_bd`.`compra_dia` (`id_compra`)
@@ -120,7 +119,6 @@ CREATE TABLE IF NOT EXISTS `salchipapas_bd`.`platillo` (
   `valor_plato` INT(20) NULL DEFAULT NULL,
   PRIMARY KEY (`id_plato`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -134,8 +132,8 @@ CREATE TABLE IF NOT EXISTS `salchipapas_bd`.`venta` (
   `id_perso` INT(11) NOT NULL,
   `est_ven` TINYINT(4) NULL DEFAULT NULL,
   PRIMARY KEY (`id_venta`),
-  INDEX `fk_venta_cliente1_idx` (`id_cli` ASC),
-  INDEX `fk_venta_persona1_idx` (`id_perso` ASC),
+  INDEX `fk_venta_cliente1_idx` (`id_cli` ASC) VISIBLE,
+  INDEX `fk_venta_persona1_idx` (`id_perso` ASC) VISIBLE,
   CONSTRAINT `fk_venta_cliente1`
     FOREIGN KEY (`id_cli`)
     REFERENCES `salchipapas_bd`.`cliente` (`id_cli`)
@@ -147,7 +145,6 @@ CREATE TABLE IF NOT EXISTS `salchipapas_bd`.`venta` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -159,8 +156,8 @@ CREATE TABLE IF NOT EXISTS `salchipapas_bd`.`detalleventa` (
   `id_plato` INT(11) NOT NULL,
   `und_det` INT(11) NOT NULL,
   `val_det` INT(20) NOT NULL,
-  INDEX `fk_detalleventa_venta_idx` (`id_venta` ASC),
-  INDEX `fk_detalleventa_platillos1_idx` (`id_plato` ASC),
+  INDEX `fk_detalleventa_venta_idx` (`id_venta` ASC) VISIBLE,
+  INDEX `fk_detalleventa_platillos1_idx` (`id_plato` ASC) VISIBLE,
   CONSTRAINT `fk_detalleventa_platillos1`
     FOREIGN KEY (`id_plato`)
     REFERENCES `salchipapas_bd`.`platillo` (`id_plato`)
@@ -184,14 +181,13 @@ CREATE TABLE IF NOT EXISTS `salchipapas_bd`.`puntos` (
   `fecha_pun` DATE NOT NULL,
   `id_cli` INT(11) NOT NULL,
   PRIMARY KEY (`id_pun`),
-  INDEX `fk_puntos_cliente1_idx` (`id_cli` ASC),
+  INDEX `fk_puntos_cliente1_idx` (`id_cli` ASC) VISIBLE,
   CONSTRAINT `fk_puntos_cliente1`
     FOREIGN KEY (`id_cli`)
     REFERENCES `salchipapas_bd`.`cliente` (`id_cli`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8;
 
 USE `salchipapas_bd` ;
@@ -211,6 +207,34 @@ end$$
 DELIMITER ;
 
 -- -----------------------------------------------------
+-- function Addcliente
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `salchipapas_bd`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `Addcliente`(n1 varchar(30),n2 varchar(30),a1 varchar(30),a2 varchar(30),ce varchar(15),tel varchar(15),dir varchar(100),cor varchar(255)) RETURNS tinyint(1)
+begin	
+    insert into cliente values(null,n1,n2,a1,a2,ce,tel,dir,cor,true);
+    return true;
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- function Addproveedor
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `salchipapas_bd`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `Addproveedor`(n1 varchar(30),n2 varchar(30),a1 varchar(30),a2 varchar(30),tel varchar(15),ni varchar(100),di varchar(15),co varchar(30)) RETURNS tinyint(1)
+begin	
+    insert into proveedor values(null,n1,n2,a1,a2,tel,ni,di,co,now(),true);
+    return true;
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
 -- function UpPersona
 -- -----------------------------------------------------
 
@@ -224,21 +248,10 @@ end$$
 
 DELIMITER ;
 
--- ------------------------------------------------------------------------------------
--- add un proveedor a la base de datos
--- ------------------------------------------------------------------------------
-DELIMITER $$
-USE `salchipapas_bd`$$
-CREATE DEFINER=`root`@`localhost` FUNCTION `Addproveedor`(n1 varchar(30),n2 varchar(30),a1 varchar(30),a2 varchar(30),tel varchar(15),ni varchar(100),di varchar(15),co varchar(30)) RETURNS tinyint(1)
-begin	
-    insert into proveedor values(null,n1,n2,a1,a2,tel,ni,di,co,now(),true);
-    return true;
-end$$
-DELIMITER ;
-describe proveedor;
--- ----------------------------------------------------------------------------
--- aptualizar proveedores
--- --------------------------------------------------------------------------
+-- -----------------------------------------------------
+-- function UpProveedor
+-- -----------------------------------------------------
+
 DELIMITER $$
 USE `salchipapas_bd`$$
 CREATE DEFINER=`root`@`localhost` FUNCTION `UpProveedor`(id int,n1 varchar(30),n2 varchar(30),a1 varchar(30),a2 varchar(30),tel varchar(15), ni varchar(100),dir varchar(100),cor varchar(255)) RETURNS tinyint(1)
@@ -248,22 +261,11 @@ begin
 end$$
 
 DELIMITER ;
--- ---------------------------------------------------------------
--- addcliente
--- -------------------------------------------------------------
-select *from cliente;
-DELIMITER $$
-USE `salchipapas_bd`$$
-CREATE DEFINER=`root`@`localhost` FUNCTION `Addcliente`(n1 varchar(30),n2 varchar(30),a1 varchar(30),a2 varchar(30),ce varchar(15),tel varchar(15),dir varchar(100),cor varchar(255)) RETURNS tinyint(1)
-begin	
-    insert into cliente values(null,n1,n2,a1,a2,ce,tel,dir,cor,true);
-    return true;
-end$$
- 
-DELIMITER ;
--- -----------------------------------------------------------------
--- Upcliente
--- ----------------------------------------------------------------
+
+-- -----------------------------------------------------
+-- function Upcliente
+-- -----------------------------------------------------
+
 DELIMITER $$
 USE `salchipapas_bd`$$
 CREATE DEFINER=`root`@`localhost` FUNCTION `Upcliente`(id int,n1 varchar(30),n2 varchar(30),a1 varchar(30),a2 varchar(30),ce varchar(15) ,tel varchar(15), dir varchar(100),cor varchar(255)) RETURNS tinyint(1)
@@ -274,5 +276,21 @@ end$$
 
 DELIMITER ;
 
-drop function Upcliente;
+LOCK TABLES `cliente` WRITE;
+/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
+INSERT INTO `cliente` VALUES (1,'laura pausini','ines','rrosales de castro','ortiz','8787','32022002','playa','lala@gmail.com',1),(2,'Amelia','daris','rozo','dulca','8989','3200222','playa','luz@gmail.com',1);
+/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
+UNLOCK TABLES;
 
+LOCK TABLES `persona` WRITE;
+/*!40000 ALTER TABLE `persona` DISABLE KEYS */;
+INSERT INTO `persona` VALUES (1,'a','c','v','b','3','n','Administrador','4','t','2020-06-27','n',1),(2,'ui','ui','ui','iu','ui','ui','Administrador','ui','iu','2020-06-27','ui',1);
+/*!40000 ALTER TABLE `persona` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+LOCK TABLES `proveedor` WRITE;
+/*!40000 ALTER TABLE `proveedor` DISABLE KEYS */;
+INSERT INTO `proveedor` VALUES (1,'martin','leo','otiz','catro','3211123','1010','av playa','martin@gmail.com','2020-06-27',1),(2,'jimmy','leo','guzman','peres','321444111','1020','vp playa','jim@mail.com','2020-06-27',1);
+/*!40000 ALTER TABLE `proveedor` ENABLE KEYS */;
+UNLOCK TABLES;
