@@ -125,11 +125,11 @@ public class LogicaUsuario {
         String sql = null;
         
         if(num!=0){
-            if (num==1)sql = "SELECT *FROM persona where nom1_perso LIKE '%" + valor + "%' where est_perso=1"; 
-            if (num==2)sql = "SELECT *FROM persona where nom2_perso LIKE '%" + valor + "%' where est_perso=1"; 
-            if (num==3)sql = "SELECT *FROM persona where ape1_perso LIKE '%" + valor + "%' where est_perso=1"; 
-            if (num==4)sql = "SELECT *FROM persona where ape2_perso LIKE '%" + valor + "%' where est_perso=1"; 
-            if (num==5)sql = "SELECT *FROM persona where tipo_perso LIKE '%" + valor + "%' where est_perso=1"; 
+            if (num==1)sql = "SELECT *FROM persona where nom1_perso LIKE '%" + valor + "%' and est_perso=1"; 
+            if (num==2)sql = "SELECT *FROM persona where nom2_perso LIKE '%" + valor + "%' and est_perso=1"; 
+            if (num==3)sql = "SELECT *FROM persona where ape1_perso LIKE '%" + valor + "%' and est_perso=1"; 
+            if (num==4)sql = "SELECT *FROM persona where ape2_perso LIKE '%" + valor + "%' and est_perso=1"; 
+            if (num==5)sql = "SELECT *FROM persona where tipo_perso LIKE '%" + valor + "%' and est_perso=1"; 
             if (num==6)sql = "SELECT *FROM persona where est_perso=1";
             if(num!=6)Funcion.Limpiar_tabla(t,m);   
             try {
