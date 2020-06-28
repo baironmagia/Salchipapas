@@ -264,8 +264,8 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="dir_txt" pref="130" max="32767" attributes="0"/>
-                              <Component id="email_txt" max="32767" attributes="0"/>
+                              <Component id="ce_txt" pref="130" max="32767" attributes="0"/>
+                              <Component id="tel_txt" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -287,14 +287,14 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel6" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="dir_txt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="ce_txt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="jLabel11" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="jLabel14" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel7" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="email_txt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="tel_txt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="tipo_combo" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
@@ -311,9 +311,9 @@
                     <Property name="text" type="java.lang.String" value="Identificacion :"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="dir_txt">
+                <Component class="javax.swing.JTextField" name="ce_txt">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dir_txtActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ce_txtActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -327,7 +327,7 @@
                     <Property name="text" type="java.lang.String" value="Telefono         :"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="email_txt">
+                <Component class="javax.swing.JTextField" name="tel_txt">
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                   </AuxValues>
@@ -396,8 +396,8 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="tel_txt1" pref="299" max="32767" attributes="0"/>
-                              <Component id="tel_txt" max="32767" attributes="0"/>
+                              <Component id="ima_txt" pref="299" max="32767" attributes="0"/>
+                              <Component id="dir_txt" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -409,12 +409,12 @@
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel5" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="tel_txt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="dir_txt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel8" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="tel_txt1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="ima_txt" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -430,9 +430,9 @@
                     <Property name="text" type="java.lang.String" value="Direccion   :"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="tel_txt">
+                <Component class="javax.swing.JTextField" name="dir_txt">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tel_txtActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dir_txtActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -446,9 +446,9 @@
                     <Property name="text" type="java.lang.String" value="EmaIL        :"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="tel_txt1">
+                <Component class="javax.swing.JTextField" name="ima_txt">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tel_txt1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ima_txtActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

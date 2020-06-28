@@ -49,6 +49,7 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        //------- eventos action para los usuario ----------------//
         if(e.getSource()==v1.save){
            USU.Add();
         }
@@ -58,6 +59,18 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
         else if(e.getSource()==v1.clear){
             USU.LimpiarCajas();
         }
+        //---------- eventos action para los clientes --------//
+        if(e.getSource()==v2.save){
+           CLI.Add();
+        }
+        else if(e.getSource()==v2.uptade){
+            CLI.Update();
+        }
+        else if(e.getSource()==v2.clear){
+            CLI.LimpiarCajas();
+        }
+        //---------- eventos action para los proveedores --------//
+        
         if(e.getSource()==v3.save){
            PROV.Add();
         }
@@ -67,9 +80,17 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
         else if(e.getSource()==v3.clear){
             PROV.LimpiarCajas();
         }
+        //------------------------------------------//
+        
+        
     }
+    
+    
     @Override
     public void mouseClicked(MouseEvent e) {
+        if(e.getSource() ==v2.tabla){
+            CLI.Select(v2.tabla);
+        }
         if(e.getSource() ==v3.tabla){
             PROV.Select(v3.tabla);
         }
@@ -126,19 +147,19 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
             v0.setLocation(x - numx, y - numy);
         }
         if (e.getSource() == v1.escote) {
-            //ventana principal
+            //ventana de usuario
             int x = e.getXOnScreen();
             int y = e.getYOnScreen();
             v1.setLocation(x - numx, y - numy);
         }
         if (e.getSource() == v2.escote) {
-            //ventana principal
+            //ventana cliente
             int x = e.getXOnScreen();
             int y = e.getYOnScreen();
             v2.setLocation(x - numx, y - numy);
         }
         if (e.getSource() == v3.escote) {
-            //ventana principal
+            //ventana proveedores
             int x = e.getXOnScreen();
             int y = e.getYOnScreen();
             v3.setLocation(x - numx, y - numy);
@@ -152,17 +173,17 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
             numy = e.getY();
         }
         if (e.getSource() == v1.escote) {
-            //ventana principal
+            //ventana usuario
             numx = e.getX();
             numy = e.getY();
         }
         if (e.getSource() == v2.escote) {
-            //ventana principal
+            //ventana cliente
             numx = e.getX();
             numy = e.getY();
         }
         if (e.getSource() == v3.escote) {
-            //ventana principal
+            //ventana proveedor
             numx = e.getX();
             numy = e.getY();
         }
@@ -204,6 +225,9 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
         if (e.getSource() ==v1.caja_txt) {
             USU.CargarTabla(v1.filtro_combo.getSelectedIndex(),v1.caja_txt.getText(),v1.tabla,USU.modelo);
         }
+        if(e.getSource()==v2.caja_txt){
+            CLI.CargarTabla(v2.filtro_combo.getSelectedIndex(),v2.caja_txt.getText(),v2.tabla,CLI.modelo);
+        }
         if(e.getSource()==v3.caja_txt){
             PROV.CargarTabla(v3.filtro_combo.getSelectedIndex(),v3.caja_txt.getText(),v3.tabla,PROV.modelo);
         }
@@ -239,23 +263,23 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
 //        v1.clear.addActionListener(this);
 //        v1.setVisible(true);
         
-//        v2.escote.addMouseMotionListener(this);
-//        v2.escote.addMouseListener(this);
-//        v2.tabla.addMouseListener(this);
-//        v2.caja_txt.addKeyListener(this);
-//        v2.save.addActionListener(this);
-//        v2.uptade.addActionListener(this);
-//        v2.clear.addActionListener(this);
-//        v2.setVisible(true);
+        v2.escote.addMouseMotionListener(this);
+        v2.escote.addMouseListener(this);
+        v2.tabla.addMouseListener(this);
+        v2.caja_txt.addKeyListener(this);
+        v2.save.addActionListener(this);
+        v2.uptade.addActionListener(this);
+        v2.clear.addActionListener(this);
+        v2.setVisible(true);
         //para asignar eventos a cada boton en este caso de la ventana de proveedor
-        v3.escote.addMouseMotionListener(this);
-        v3.escote.addMouseListener(this);
-        v3.tabla.addMouseListener(this);
-        v3.caja_txt.addKeyListener(this);
-        v3.save.addActionListener(this);
-        v3.uptade.addActionListener(this);
-        v3.clear.addActionListener(this);
-        v3.setVisible(true);
+//        v3.escote.addMouseMotionListener(this);
+//        v3.escote.addMouseListener(this);
+//        v3.tabla.addMouseListener(this);
+//        v3.caja_txt.addKeyListener(this);
+//        v3.save.addActionListener(this);
+//        v3.uptade.addActionListener(this);
+//        v3.clear.addActionListener(this);
+//        v3.setVisible(true);
        
         
     }

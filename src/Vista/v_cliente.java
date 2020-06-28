@@ -41,17 +41,17 @@ public class v_cliente extends javax.swing.JFrame {
         ap2_txt = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        dir_txt = new javax.swing.JTextField();
+        ce_txt = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        email_txt = new javax.swing.JTextField();
+        tel_txt = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         tipo_combo = new javax.swing.JComboBox<>();
         jPanel8 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        tel_txt = new javax.swing.JTextField();
+        dir_txt = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        tel_txt1 = new javax.swing.JTextField();
+        ima_txt = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         scroll = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
@@ -147,9 +147,9 @@ public class v_cliente extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel6.setText("Identificacion :");
 
-        dir_txt.addActionListener(new java.awt.event.ActionListener() {
+        ce_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dir_txtActionPerformed(evt);
+                ce_txtActionPerformed(evt);
             }
         });
 
@@ -178,8 +178,8 @@ public class v_cliente extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(dir_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                    .addComponent(email_txt))
+                    .addComponent(ce_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(tel_txt))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
@@ -196,13 +196,13 @@ public class v_cliente extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dir_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ce_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(email_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tel_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tipo_combo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -213,18 +213,18 @@ public class v_cliente extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel5.setText("Direccion   :");
 
-        tel_txt.addActionListener(new java.awt.event.ActionListener() {
+        dir_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tel_txtActionPerformed(evt);
+                dir_txtActionPerformed(evt);
             }
         });
 
         jLabel8.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel8.setText("EmaIL        :");
 
-        tel_txt1.addActionListener(new java.awt.event.ActionListener() {
+        ima_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tel_txt1ActionPerformed(evt);
+                ima_txtActionPerformed(evt);
             }
         });
 
@@ -239,8 +239,8 @@ public class v_cliente extends javax.swing.JFrame {
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(tel_txt1, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-                    .addComponent(tel_txt))
+                    .addComponent(ima_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                    .addComponent(dir_txt))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -249,11 +249,11 @@ public class v_cliente extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tel_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dir_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tel_txt1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ima_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -432,17 +432,17 @@ public class v_cliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tel_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tel_txtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tel_txtActionPerformed
-
     private void dir_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dir_txtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_dir_txtActionPerformed
 
-    private void tel_txt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tel_txt1ActionPerformed
+    private void ce_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ce_txtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tel_txt1ActionPerformed
+    }//GEN-LAST:event_ce_txtActionPerformed
+
+    private void ima_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ima_txtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ima_txtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -484,12 +484,13 @@ public class v_cliente extends javax.swing.JFrame {
     public javax.swing.JTextField ap1_txt;
     public javax.swing.JTextField ap2_txt;
     public javax.swing.JTextField caja_txt;
+    public javax.swing.JTextField ce_txt;
     public javax.swing.JButton clear;
     public javax.swing.JButton delete;
     public javax.swing.JTextField dir_txt;
-    public javax.swing.JTextField email_txt;
     public javax.swing.JPanel escote;
     public javax.swing.JComboBox<String> filtro_combo;
+    public javax.swing.JTextField ima_txt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
@@ -515,7 +516,6 @@ public class v_cliente extends javax.swing.JFrame {
     public javax.swing.JScrollPane scroll;
     public javax.swing.JTable tabla;
     public javax.swing.JTextField tel_txt;
-    public javax.swing.JTextField tel_txt1;
     public javax.swing.JComboBox<String> tipo_combo;
     public javax.swing.JButton uptade;
     // End of variables declaration//GEN-END:variables

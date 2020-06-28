@@ -248,4 +248,31 @@ begin
 end$$
 
 DELIMITER ;
-drop function UpProveedor;
+-- ---------------------------------------------------------------
+-- addcliente
+-- -------------------------------------------------------------
+select *from cliente;
+DELIMITER $$
+USE `salchipapas_bd`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `Addcliente`(n1 varchar(30),n2 varchar(30),a1 varchar(30),a2 varchar(30),ce varchar(15),tel varchar(15),dir varchar(100),cor varchar(255)) RETURNS tinyint(1)
+begin	
+    insert into cliente values(null,n1,n2,a1,a2,ce,tel,dir,cor,true);
+    return true;
+end$$
+ 
+DELIMITER ;
+-- -----------------------------------------------------------------
+-- Upcliente
+-- ----------------------------------------------------------------
+DELIMITER $$
+USE `salchipapas_bd`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `Upcliente`(id int,n1 varchar(30),n2 varchar(30),a1 varchar(30),a2 varchar(30),ce varchar(15) ,tel varchar(15), dir varchar(100),cor varchar(255)) RETURNS tinyint(1)
+begin
+    update cliente set nom1_cli=n1,nom2_cli=n2,ape1_cli=a1,ape2_cli=a2,ced_cli=ce,tel_cli=tel,dir_cli=dir,cor_cli=cor where id_cli=id;
+    return true;
+end$$
+
+DELIMITER ;
+
+drop function Upcliente;
+
