@@ -252,6 +252,7 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
         v0.rVenta.addMouseListener(this);
         v0.escote.addMouseMotionListener(this);
         v0.setLocationRelativeTo(null);
+        v0.setVisible(true);
         
         
 //        v1.escote.addMouseMotionListener(this);
