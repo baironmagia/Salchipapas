@@ -1,9 +1,11 @@
 package Controlador;
 import Modelo.Archivo;
+import Modelo.LogicaBodega;
 import Modelo.LogicaCliente;
 import Modelo.LogicaProveedor;
 import Modelo.LogicaUsuario;
 import Vista.Principal;
+import Vista.v_bodega;
 import Vista.v_cliente;
 import Vista.v_proveedor;
 import Vista.v_usuario;
@@ -21,10 +23,14 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
     public static v_usuario v1;
     public static v_cliente v2;
     public static v_proveedor v3;
+    public static v_bodega v4;
+    
+    
     private Archivo a;
     private LogicaUsuario USU;
     private LogicaCliente CLI;
     private LogicaProveedor PROV;
+    private LogicaBodega BOD;
 
   
     public Control() {
@@ -34,11 +40,14 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
         v1=new v_usuario();
         v2=new v_cliente();
         v3=new v_proveedor();
+        v4=new v_bodega();
+        
         
         
         CLI=new LogicaCliente();
         USU=new LogicaUsuario();
         PROV=new LogicaProveedor();
+        BOD=new LogicaBodega();
         inicioBoton();
         
         
@@ -281,6 +290,8 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
 //        v3.uptade.addActionListener(this);
 //        v3.clear.addActionListener(this);
 //        v3.setVisible(true);
+
+           v4.setVisible(true);
        
         
     }
