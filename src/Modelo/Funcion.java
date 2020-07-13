@@ -1,8 +1,10 @@
 
 package Modelo;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
@@ -72,6 +74,14 @@ public class Funcion {
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
+    public static String getFecha(JDateChooser f) {
+        try { 
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");  
+            return formato.format(f.getDate());
+        } catch (Exception e) {
+        }
+        return "";        
+    }
     public void Aviso(int num){  
         switch(num){
             case 1:JOptionPane.showMessageDialog(null,"No se encontro resultados","Resultado",JOptionPane.PLAIN_MESSAGE,new ImageIcon(getClass().getResource("/IMG/vacio.png")));
@@ -107,6 +117,8 @@ public class Funcion {
             case 16:JOptionPane.showMessageDialog(null,"No se puede establecer la Conexion","Resultado",JOptionPane.PLAIN_MESSAGE,new ImageIcon(getClass().getResource("/IMG/conexion.png")));
             break;
             case 17:JOptionPane.showMessageDialog(null,"Email no Valido","Resultado",JOptionPane.PLAIN_MESSAGE,new ImageIcon(getClass().getResource("/IMG/correo.png")));
+            break;
+            case 18:JOptionPane.showMessageDialog(null,"Proceso Exitoso Ver Detalle","Resultado",JOptionPane.PLAIN_MESSAGE,new ImageIcon(getClass().getResource("/IMG/corecto.png")));
             break;
         }
         
