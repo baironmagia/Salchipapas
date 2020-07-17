@@ -5,6 +5,7 @@ import Modelo.LogicaCliente;
 import Modelo.LogicaCompraDia;
 import Modelo.LogicaProveedor;
 import Modelo.LogicaUsuario;
+import Modelo.Marca;
 import Vista.Principal;
 import Vista.v_CompraDia;
 import Vista.v_bodega;
@@ -36,10 +37,10 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
     private LogicaProveedor PROV;
     private LogicaBodega BOD;
     private LogicaCompraDia COMP;
-  
+    private Marca MA;
+   
     public Control() {
         a=new Archivo();
-        System.out.println("ertrr");
         v0=new Principal();
         v1=new v_usuario();
         v2=new v_cliente();
@@ -51,7 +52,8 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
         USU=new LogicaUsuario();
         PROV=new LogicaProveedor();
         BOD=new LogicaBodega();
-        COMP =new LogicaCompraDia();
+        COMP=new LogicaCompraDia();
+        MA=new Marca();
         inicioBoton();
         
        //if(a.Leer())
@@ -109,7 +111,7 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
         else if(e.getSource()==v5.clear){
             COMP.LimpiarCajas();
         }
-        else if(e.getSource()==v5.btn_consulta){
+        else if(e.getSource()==v5.btn_fec){
             COMP.CargarTabla(v5.filtro_combo.getSelectedIndex(), "", v5.tabla, COMP.modelo);
         }
        
@@ -299,6 +301,9 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
             
         }
     }
+//    public void Combo(){
+//        MA.CargarMarca(Control.v5.cmb_persona);
+//    }
     
     private void inicioBoton(){
 //        v0.lblUsuario.addMouseMotionListener(this);
@@ -320,7 +325,7 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
 //        v0.escote.addMouseMotionListener(this);
 //        v0.setLocationRelativeTo(null);
 //        v0.setVisible(true);
-        
+//        
         
 //        v1.escote.addMouseMotionListener(this);
 //        v1.escote.addMouseListener(this);
@@ -366,7 +371,7 @@ public class Control implements ActionListener, KeyListener, MouseListener, Mous
         v5.save.addActionListener(this);
         v5.uptade.addActionListener(this);
         v5.clear.addActionListener(this);
-        v5.btn_consulta.addActionListener(this);
+        v5.btn_fec.addActionListener(this);
         v5.setVisible(true);
         
     }
