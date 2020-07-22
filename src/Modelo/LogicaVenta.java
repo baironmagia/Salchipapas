@@ -14,7 +14,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
-public class LogicaCompraDia {
+public class LogicaVenta {
 
     private Connection cn;//crea una variable para la conexion
     public String pk;
@@ -22,22 +22,23 @@ public class LogicaCompraDia {
     public Funcion funcion;
     private CallableStatement fun;//llama las funciones de mysql
     private boolean seleccion = false;
-    private Marca MA;
-    private MarcaP MAP;
+    private ComboVentaCliente CVCLI;
+    private ComboVentaPersona CVPER;
 
-    public LogicaCompraDia() {
+    public LogicaVenta() {
         funcion = new Funcion();
         IniciarModel();
-        MA = new Marca();
-        MAP = new MarcaP();
-        MA.CargarMarca(Control.v5.cmb_persona);
-        MAP.CargarMarca(Control.v5.cmb_proveedor);
+        CVCLI = new ComboVentaCliente();
+        CVPER = new ComboVentaPersona();
+
+        CVCLI.CargarCliente(Control.v6.cmb_cliente);
+        CVPER.CargarPersona(Control.v6.cmb_persona);
     }
 
     private void IniciarModel() {
-        Funcion.PitarScroll(Control.v5.scroll);
-        Funcion.PintarMarcoTabla(Control.v5.tabla);
-        String titulo1[] = {"", "", "", "Persona", "Proveedor", "Fecha", ""};
+        Funcion.PitarScroll(Control.v6.scroll);
+        Funcion.PintarMarcoTabla(Control.v6.tabla);
+        String titulo1[] = {"", "", "", "Cliente", "Persona", "Fecha", ""};
         modelo = new DefaultTableModel(null, titulo1) {
             public boolean isCellEditable(int row, int column) {
                 if (column == 7) {
@@ -47,8 +48,8 @@ public class LogicaCompraDia {
                 }
             }
         };
-        CargarTabla(4, "", Control.v5.tabla, modelo);
-        TamañoTabla(Control.v5.tabla);
+        CargarTabla(4, "", Control.v6.tabla, modelo);
+        TamañoTabla(Control.v6.tabla);
     }
 
     public void Add() {
@@ -56,16 +57,16 @@ public class LogicaCompraDia {
             try {
                 if (funcion.Confirme(4) == 0) {
                     cn = AccesoDatos.conexion();
-                    fun = cn.prepareCall("{?=call  AddCompraDia(?,?)}");
+                    fun = cn.prepareCall("{?=call  Addventa(?,?)}");
                     fun.registerOutParameter(1, Types.BOOLEAN);
-                    fun.setInt(2, Control.v5.cmb_persona.getItemAt(Control.v5.cmb_persona.getSelectedIndex()).getId());
-                    fun.setInt(3, Control.v5.cmb_proveedor.getItemAt(Control.v5.cmb_proveedor.getSelectedIndex()).getId());
+                    fun.setInt(2, Control.v6.cmb_cliente.getItemAt(Control.v6.cmb_cliente.getSelectedIndex()).getId());
+                    fun.setInt(3, Control.v6.cmb_persona.getItemAt(Control.v6.cmb_persona.getSelectedIndex()).getId());
                     fun.execute();
                     if (fun.getBoolean(1)) {
                         seleccion = false;
                         LimpiarCajas();
-                        Funcion.Limpiar_tabla(Control.v5.tabla, modelo);
-                        CargarTabla(4, "", Control.v5.tabla, modelo);
+                        Funcion.Limpiar_tabla(Control.v6.tabla, modelo);
+                        CargarTabla(4, "", Control.v6.tabla, modelo);
                         funcion.Aviso(3);
                     }
                     cn.close();
@@ -88,19 +89,19 @@ public class LogicaCompraDia {
                 try {
                     if (funcion.Confirme(1) == 0) {
                         cn = AccesoDatos.conexion();
-                        fun = cn.prepareCall("{?=call UpCompraDia(?,?,?)}");
+                        fun = cn.prepareCall("{?=call UpVenta(?,?,?)}");
                         fun.registerOutParameter(1, Types.BOOLEAN);
                         fun.setString(2, pk);
-                        fun.setInt(3, MA.Item(Control.v5.cmb_persona.getSelectedItem().toString()));
-                        fun.setInt(4, MAP.Item(Control.v5.cmb_proveedor.getSelectedItem().toString()));
+                        fun.setInt(3, CVCLI.Item(Control.v6.cmb_cliente.getSelectedItem().toString()));
+                        fun.setInt(4, CVPER.Item(Control.v6.cmb_persona.getSelectedItem().toString()));
 
                         fun.execute();
 
                         if (fun.getBoolean(1)) {
                             seleccion = false;
                             LimpiarCajas();
-                            Funcion.Limpiar_tabla(Control.v5.tabla, modelo);
-                            CargarTabla(4, "", Control.v5.tabla, modelo);
+                            Funcion.Limpiar_tabla(Control.v6.tabla, modelo);
+                            CargarTabla(4, "", Control.v6.tabla, modelo);
                             funcion.Aviso(3);
                         }
                         cn.close();
@@ -123,16 +124,16 @@ public class LogicaCompraDia {
         String sql = null;
         if (num != 0) {
             if (num == 1) {
-                sql = "SELECT compra_dia.id_compra,persona.id_perso,proveedor.id_prove,persona.nom1_perso,proveedor.nom1_prove,compra_dia.fecha,compra_dia.est_comp FROM persona,proveedor,compra_dia WHERE compra_dia.id_perso = persona.id_perso AND compra_dia.id_prove = proveedor.id_prove AND persona.nom1_perso LIKE '%" + valor + "%'";
+                sql = "SELECT venta.id_venta, cliente.id_cli, persona.id_perso,cliente.nom1_cli,persona.nom1_perso, venta.fecha_ven,venta.est_ven FROM venta,cliente,persona WHERE venta.id_cli = cliente.id_cli and venta.id_perso=persona.id_perso and cliente.nom1_cli LIKE '%" + valor + "%'";
             }
             if (num == 2) {
-                sql = "SELECT compra_dia.id_compra,persona.id_perso,proveedor.id_prove,persona.nom1_perso,proveedor.nom1_prove,compra_dia.fecha,compra_dia.est_comp FROM persona,proveedor,compra_dia WHERE compra_dia.id_perso = persona.id_perso AND compra_dia.id_prove = proveedor.id_prove AND proveedor.nom1_prove LIKE '%" + valor + "%'";
+                sql = "SELECT venta.id_venta, cliente.id_cli, persona.id_perso,cliente.nom1_cli,persona.nom1_perso, venta.fecha_ven,venta.est_ven FROM venta,cliente,persona WHERE venta.id_cli = cliente.id_cli and venta.id_perso=persona.id_perso and persona.nom1_perso LIKE '%" + valor + "%'";
             }
             if (num == 3) {
-                sql = "SELECT compra_dia.id_compra,persona.id_perso,proveedor.id_prove,persona.nom1_perso,proveedor.nom1_prove,compra_dia.fecha,compra_dia.est_comp FROM persona,proveedor,compra_dia WHERE compra_dia.id_perso = persona.id_perso AND compra_dia.id_prove = proveedor.id_prove and compra_dia.fecha between '" + Funcion.getFecha(Control.v5.fec_0) + "' and '" + Funcion.getFecha(Control.v5.fec_1) + "'";
+                sql = "SELECT venta.id_venta, cliente.id_cli, persona.id_perso,cliente.nom1_cli,persona.nom1_perso, venta.fecha_ven,venta.est_ven FROM venta,cliente,persona WHERE venta.id_cli = cliente.id_cli and venta.id_perso=persona.id_perso and venta.fecha_ven between '" + Funcion.getFecha(Control.v6.fec_0) + "' and '" + Funcion.getFecha(Control.v6.fec_1) + "'";
             }
             if (num == 4) {
-                sql = "SELECT compra_dia.id_compra,persona.id_perso,proveedor.id_prove, persona.nom1_perso,proveedor.nom1_prove,compra_dia.fecha,compra_dia.est_comp FROM persona,proveedor,compra_dia WHERE compra_dia.id_perso = persona.id_perso AND compra_dia.id_prove = proveedor.id_prove";
+                sql = "SELECT venta.id_venta,cliente.id_cli,persona.id_perso,cliente.nom1_cli,persona.nom1_perso,venta.fecha_ven,venta.est_ven FROM venta,cliente,persona WHERE venta.id_cli = cliente.id_cli AND venta.id_perso = persona.id_perso";
             }
 
             if (num != 4) {
@@ -145,10 +146,10 @@ public class LogicaCompraDia {
 
                 while (rs.next()) {
                     registro[0] = rs.getString(1);//id
-                    registro[1] = rs.getString(2);//id_perso
-                    registro[2] = rs.getString(3);//id_prov
-                    registro[3] = rs.getString(4);//nom1_perso
-                    registro[4] = rs.getString(5);//nom1_prove
+                    registro[1] = rs.getString(2);//id_cli
+                    registro[2] = rs.getString(3);//id_perso
+                    registro[3] = rs.getString(4);//nom1_cli
+                    registro[4] = rs.getString(5);//nom1_perso
                     registro[5] = rs.getString(6);//fec
                     registro[6] = rs.getString(7);//est
 
@@ -166,8 +167,8 @@ public class LogicaCompraDia {
 
     private void TamañoTabla(JTable t) {
         TableColumnModel columnModel = t.getColumnModel();
-        columnModel.getColumn(3).setPreferredWidth(150);//nom1_perso
-        columnModel.getColumn(4).setPreferredWidth(150);//nom1__prove
+        columnModel.getColumn(3).setPreferredWidth(150);//nom1_cli
+        columnModel.getColumn(4).setPreferredWidth(150);//nom1__perso
         columnModel.getColumn(5).setPreferredWidth(100);//fec
 
         //id
@@ -176,13 +177,13 @@ public class LogicaCompraDia {
         t.getTableHeader().getColumnModel().getColumn(0).setMaxWidth(0);
         t.getTableHeader().getColumnModel().getColumn(0).setMinWidth(0);
 
-        //id_perso
+        //id_cli
         t.getColumnModel().getColumn(1).setMinWidth(0);
         t.getColumnModel().getColumn(1).setPreferredWidth(0);
         t.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(0);
         t.getTableHeader().getColumnModel().getColumn(1).setMinWidth(0);
 
-        //id_prove
+        //id_perso
         t.getColumnModel().getColumn(2).setMinWidth(0);
         t.getColumnModel().getColumn(2).setPreferredWidth(0);
         t.getTableHeader().getColumnModel().getColumn(2).setMaxWidth(0);
@@ -200,20 +201,20 @@ public class LogicaCompraDia {
         if (t.getSelectedRow() != -1) {
             int fila = t.getSelectedRow();
             pk = t.getValueAt(fila, 0).toString();
-            Control.v5.cmb_persona.getModel().setSelectedItem(t.getValueAt(fila, 3).toString());
-            Control.v5.cmb_proveedor.getModel().setSelectedItem(t.getValueAt(fila, 4).toString());
+            Control.v6.cmb_cliente.getModel().setSelectedItem(t.getValueAt(fila, 3).toString());
+            Control.v6.cmb_persona.getModel().setSelectedItem(t.getValueAt(fila, 4).toString());
 
             seleccion = true;
         }
     }
 
     public void LimpiarCajas() {
-        Control.v5.cmb_persona.setSelectedIndex(0);
-        Control.v5.cmb_proveedor.setSelectedIndex(0);
+        Control.v6.cmb_cliente.setSelectedIndex(0);
+        Control.v6.cmb_persona.setSelectedIndex(0);
     }
 
     private boolean Verificar() {
-        if (Control.v5.cmb_persona.getSelectedIndex() != 0 && Control.v5.cmb_proveedor.getSelectedIndex() != 0) {
+        if (Control.v6.cmb_cliente.getSelectedIndex() != 0 && Control.v6.cmb_persona.getSelectedIndex() != 0) {
             return true;
         } else {
             funcion.Aviso(14);

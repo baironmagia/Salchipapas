@@ -54,17 +54,34 @@ public class MarcaP {
             //funcion.Aviso(16);
         }
     }
-    
-    public String Item(int n){       
-        String tem = null;
+//    
+//    public String Item(int n){       
+//        String tem = null;
+//        try {
+//            PreparedStatement pt=AccesoDatos.conexion().prepareStatement("SELECT proveedor.nom1_prove FROM proveedor where id_prove=?");
+//            pt.setInt(1,n);
+//            ResultSet rs=pt.executeQuery();
+//            while (rs.next())tem=rs.getString(1);
+//        } catch (SQLException ex) {
+//           Logger.getLogger(MarcaP.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return tem;
+//    }
+//    
+    public int Item(String n){       
+        int tem = 0;
         try {
-            PreparedStatement pt=AccesoDatos.conexion().prepareStatement("SELECT proveedor.nom1_prove FROM proveedor where id_prove=?");
-            pt.setInt(1,n);
+            System.out.println(n);
+            PreparedStatement pt=AccesoDatos.conexion().prepareStatement("SELECT *FROM proveedor where nom1_prove=?");
+            pt.setString(1,n);
             ResultSet rs=pt.executeQuery();
-            while (rs.next())tem=rs.getString(1);
+            while (rs.next()){
+                tem=rs.getInt(1);
+            }
         } catch (SQLException ex) {
-           Logger.getLogger(MarcaP.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(Marca.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println(tem);
         return tem;
     }
     @Override

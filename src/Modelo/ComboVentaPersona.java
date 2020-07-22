@@ -9,20 +9,19 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 
-public class Marca {
+public class ComboVentaPersona {
     private int id;
     private String nombre;
     private Connection cn;
     
     
-    public Marca(int id, String nombre) {
+    public ComboVentaPersona(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
 
-    public Marca() {
+    public ComboVentaPersona() {
     }
     
     public int getId() {
@@ -38,14 +37,15 @@ public class Marca {
         this.nombre = nombre;
     } 
     
-    public void CargarMarca(JComboBox<Marca> combo){
+    public void CargarPersona(JComboBox<ComboVentaPersona> combo){
         try {
             cn = AccesoDatos.conexion();
             Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT *FROM persona");
-            combo.addItem(new Marca(0,"Seleccione"));
+            ResultSet rs = st.executeQuery("SELECT * FROM persona");
+            combo.addItem(new ComboVentaPersona(0,"Seleccione"));
             while (rs.next()) {
-                combo.addItem(new Marca(rs.getInt(1),rs.getString(2)));              
+                combo.addItem(new ComboVentaPersona(rs.getInt(1),rs.getString(2)));
+              
             }
             rs.close();
             st.close();
@@ -54,15 +54,16 @@ public class Marca {
             //funcion.Aviso(16);
         }
     }
-//    public int Item(String n){       
-//        int tem = 0;
+//    
+//    public String Item(int n){       
+//        String tem = null;
 //        try {
-//            PreparedStatement pt=AccesoDatos.conexion().prepareStatement("SELECT persona.n FROM persona where id_perso=?");
+//            PreparedStatement pt=AccesoDatos.conexion().prepareStatement("SELECT proveedor.nom1_prove FROM proveedor where id_prove=?");
 //            pt.setInt(1,n);
 //            ResultSet rs=pt.executeQuery();
 //            while (rs.next())tem=rs.getString(1);
 //        } catch (SQLException ex) {
-//           Logger.getLogger(Marca.class.getName()).log(Level.SEVERE, null, ex);
+//           Logger.getLogger(MarcaP.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //        return tem;
 //    }
@@ -80,7 +81,6 @@ public class Marca {
         } catch (SQLException ex) {
            Logger.getLogger(Marca.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(tem);
         return tem;
     }
     @Override

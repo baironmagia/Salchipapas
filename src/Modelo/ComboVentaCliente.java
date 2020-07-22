@@ -11,18 +11,18 @@ import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-public class Marca {
+public class ComboVentaCliente {
     private int id;
     private String nombre;
     private Connection cn;
     
     
-    public Marca(int id, String nombre) {
+    public ComboVentaCliente(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
 
-    public Marca() {
+    public ComboVentaCliente() {
     }
     
     public int getId() {
@@ -38,14 +38,14 @@ public class Marca {
         this.nombre = nombre;
     } 
     
-    public void CargarMarca(JComboBox<Marca> combo){
+    public void CargarCliente(JComboBox<ComboVentaCliente> combo){
         try {
             cn = AccesoDatos.conexion();
             Statement st = cn.createStatement();
-            ResultSet rs = st.executeQuery("SELECT *FROM persona");
-            combo.addItem(new Marca(0,"Seleccione"));
+            ResultSet rs = st.executeQuery("SELECT * FROM cliente");
+            combo.addItem(new ComboVentaCliente(0,"Seleccione"));
             while (rs.next()) {
-                combo.addItem(new Marca(rs.getInt(1),rs.getString(2)));              
+                combo.addItem(new ComboVentaCliente(rs.getInt(1),rs.getString(2)));              
             }
             rs.close();
             st.close();
@@ -71,16 +71,15 @@ public class Marca {
         int tem = 0;
         try {
             System.out.println(n);
-            PreparedStatement pt=AccesoDatos.conexion().prepareStatement("SELECT *FROM persona where nom1_perso=?");
+            PreparedStatement pt=AccesoDatos.conexion().prepareStatement("SELECT * FROM cliente where nom1_cli=?");
             pt.setString(1,n);
             ResultSet rs=pt.executeQuery();
             while (rs.next()){
                 tem=rs.getInt(1);
             }
         } catch (SQLException ex) {
-           Logger.getLogger(Marca.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(ComboVentaCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(tem);
         return tem;
     }
     @Override
